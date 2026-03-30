@@ -54,6 +54,8 @@ const Index = () => {
         stats={game.stats}
         oppositeCondition={game.oppositeCondition}
         oppositeOutcome={game.oppositeOutcome}
+        yourTrajectory={game.yourTrajectory}
+        oppositeTrajectory={game.oppositeTrajectory}
         onReplayAs={game.replayWithSameChoices}
         onRestart={game.restart}
       />

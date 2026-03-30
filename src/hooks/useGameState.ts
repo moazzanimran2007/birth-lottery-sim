@@ -239,7 +239,7 @@ export function useGameState() {
   };
 }
 
-function applyEffectsLocal(stats: GameStats, effects: Partial<Record<string, number>>): GameStats {
+function applyEffectsLocal(stats: GameStats, effects: ChoiceEffect): GameStats {
   return {
     netWorth: stats.netWorth + (effects.netWorth || 0),
     stress: Math.max(0, Math.min(100, stats.stress + (effects.stress || 0))),

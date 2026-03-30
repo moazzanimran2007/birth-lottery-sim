@@ -18,6 +18,8 @@ export default function RevealScreen({
   stats,
   oppositeCondition,
   oppositeOutcome,
+  yourTrajectory,
+  oppositeTrajectory,
   onReplayAs,
   onRestart,
 }: RevealScreenProps) {

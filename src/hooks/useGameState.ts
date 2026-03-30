@@ -126,6 +126,12 @@ export function useGameState() {
   const oppositeCondition = oppositeConditionId
     ? CONDITIONS.find(c => c.id === oppositeConditionId)!
     : null;
+  const yourTrajectory = state.conditionId
+    ? simulateTrajectory(state.conditionId, state.choicesMade)
+    : [];
+  const oppositeTrajectory = oppositeConditionId
+    ? simulateTrajectory(oppositeConditionId, state.choicesMade)
+    : [];
 
   return {
     ...state,

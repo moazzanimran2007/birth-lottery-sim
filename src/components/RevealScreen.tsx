@@ -1,11 +1,14 @@
-import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition } from '@/data/gameData';
+import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition, type TrajectoryPoint } from '@/data/gameData';
 import type { GameStats } from '@/hooks/useGameState';
+import WealthTrajectoryChart from './WealthTrajectoryChart';
 
 interface RevealScreenProps {
   condition: StartingCondition;
   stats: GameStats;
   oppositeCondition: StartingCondition | null;
   oppositeOutcome: GameStats | null;
+  yourTrajectory: TrajectoryPoint[];
+  oppositeTrajectory: TrajectoryPoint[];
   onReplayAs: (conditionId: ConditionId) => void;
   onRestart: () => void;
 }

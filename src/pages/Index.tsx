@@ -24,7 +24,7 @@ const Index = () => {
   if (game.phase === 'playing' && game.currentLifeStage) {
     return (
       <div className="flex">
-        <div className="flex-1 pr-48 md:pr-56">
+        <div className="flex-1 pb-16 md:pb-0 md:pr-56">
           <LifeStageScreen
             stage={game.currentLifeStage}
             choices={game.availableChoices}

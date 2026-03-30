@@ -1,6 +1,7 @@
 import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition, type TrajectoryPoint } from '@/data/gameData';
 import type { GameStats } from '@/hooks/useGameState';
 import WealthTrajectoryChart from './WealthTrajectoryChart';
+import FinancialLiteracySection from './FinancialLiteracySection';
 
 interface RevealScreenProps {
   condition: StartingCondition;

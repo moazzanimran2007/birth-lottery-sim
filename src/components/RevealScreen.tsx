@@ -1,11 +1,16 @@
-import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition } from '@/data/gameData';
+import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition, type TrajectoryPoint } from '@/data/gameData';
 import type { GameStats } from '@/hooks/useGameState';
+import WealthTrajectoryChart from './WealthTrajectoryChart';
+import FinancialLiteracySection from './FinancialLiteracySection';
+import ShareCard from './ShareCard';
 
 interface RevealScreenProps {
   condition: StartingCondition;
   stats: GameStats;
   oppositeCondition: StartingCondition | null;
   oppositeOutcome: GameStats | null;
+  yourTrajectory: TrajectoryPoint[];
+  oppositeTrajectory: TrajectoryPoint[];
   onReplayAs: (conditionId: ConditionId) => void;
   onRestart: () => void;
 }
@@ -15,6 +20,8 @@ export default function RevealScreen({
   stats,
   oppositeCondition,
   oppositeOutcome,
+  yourTrajectory,
+  oppositeTrajectory,
   onReplayAs,
   onRestart,
 }: RevealScreenProps) {
@@ -77,6 +84,27 @@ export default function RevealScreen({
             </p>
           </div>
         )}
+
+        {/* Wealth Trajectory Chart */}
+        {oppositeCondition && oppositeTrajectory.length > 0 && (
+          <div className="mt-16 w-full max-w-3xl animate-fade-up-delay-2">
+            <WealthTrajectoryChart
+              yourTrajectory={yourTrajectory}
+              oppositeTrajectory={oppositeTrajectory}
+              yourLabel={condition.label}
+              oppositeLabel={oppositeCondition.label}
+              yourIsPrivileged={condition.isPrivileged}
+            />
+          </div>
+        )}
+
+        {/* Share / Download */}
+        <ShareCard
+          condition={condition}
+          stats={stats}
+          oppositeCondition={oppositeCondition}
+          oppositeOutcome={oppositeOutcome}
+        />
       </section>
 
       {/* CONCEPTS */}
@@ -100,6 +128,9 @@ export default function RevealScreen({
           ))}
         </div>
       </section>
+
+      {/* Financial Literacy Resources */}
+      <FinancialLiteracySection />
 
       {/* REPLAY */}
       <section className="px-4 md:px-8 py-16 max-w-2xl mx-auto text-center">

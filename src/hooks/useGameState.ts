@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ConditionId, CONDITIONS, LIFE_STAGES, getAvailableChoices, simulateOutcome, getOppositeCondition } from '@/data/gameData';
+import { ConditionId, CONDITIONS, LIFE_STAGES, getAvailableChoices, simulateOutcome, simulateTrajectory, getOppositeCondition } from '@/data/gameData';
 
 export type GamePhase = 'intro' | 'coin_flip' | 'condition_reveal' | 'playing' | 'reveal';
 
@@ -126,6 +126,12 @@ export function useGameState() {
   const oppositeCondition = oppositeConditionId
     ? CONDITIONS.find(c => c.id === oppositeConditionId)!
     : null;
+  const yourTrajectory = state.conditionId
+    ? simulateTrajectory(state.conditionId, state.choicesMade)
+    : [];
+  const oppositeTrajectory = oppositeConditionId
+    ? simulateTrajectory(oppositeConditionId, state.choicesMade)
+    : [];
 
   return {
     ...state,
@@ -135,6 +141,8 @@ export function useGameState() {
     isPrivileged,
     oppositeCondition,
     oppositeOutcome,
+    yourTrajectory,
+    oppositeTrajectory,
     startCoinFlip,
     assignCondition,
     startPlaying,

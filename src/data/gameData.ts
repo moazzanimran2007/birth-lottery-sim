@@ -377,32 +377,55 @@ export function simulateOutcome(
   conditionId: ConditionId,
   choiceIds: string[]
 ): { netWorth: number; stress: number; socialCapital: number; security: number } {
+  const trajectory = simulateTrajectory(conditionId, choiceIds);
+  return trajectory[trajectory.length - 1];
+}
+
+export interface TrajectoryPoint {
+  age: number;
+  label: string;
+  netWorth: number;
+  stress: number;
+  socialCapital: number;
+  security: number;
+}
+
+export function simulateTrajectory(
+  conditionId: ConditionId,
+  choiceIds: string[]
+): TrajectoryPoint[] {
   const condition = CONDITIONS.find(c => c.id === conditionId)!;
-  let result = {
+  let current = {
     netWorth: condition.startingNetWorth,
     stress: condition.startingStress,
     socialCapital: condition.startingSocialCapital,
     security: condition.startingSecurity,
   };
 
+  const points: TrajectoryPoint[] = [
+    { age: 0, label: 'Birth', ...current },
+  ];
+
   choiceIds.forEach((choiceId, idx) => {
     const stage = LIFE_STAGES[idx];
     if (!stage) return;
-    
-    // Find the choice — if the choice isn't available to this condition, pick the closest available one
+
     let choice = stage.choices.find(c => c.id === choiceId);
     if (!choice || (choice.availableTo !== 'all' && !choice.availableTo.includes(conditionId))) {
-      // Pick the last available choice (usually the most constrained option)
       const available = getAvailableChoices(stage, conditionId);
       choice = available[available.length - 1];
     }
     if (!choice) return;
 
-    result.netWorth += choice.effects.netWorth;
-    result.stress = Math.max(0, Math.min(100, result.stress + choice.effects.stress));
-    result.socialCapital = Math.max(0, Math.min(100, result.socialCapital + choice.effects.socialCapital));
-    result.security = Math.max(0, Math.min(100, result.security + choice.effects.security));
+    current = {
+      netWorth: current.netWorth + choice.effects.netWorth,
+      stress: Math.max(0, Math.min(100, current.stress + choice.effects.stress)),
+      socialCapital: Math.max(0, Math.min(100, current.socialCapital + choice.effects.socialCapital)),
+      security: Math.max(0, Math.min(100, current.security + choice.effects.security)),
+    };
+
+    points.push({ age: stage.age, label: stage.title, ...current });
   });
 
-  return result;
+  return points;
 }

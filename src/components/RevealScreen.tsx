@@ -82,6 +82,19 @@ export default function RevealScreen({
             </p>
           </div>
         )}
+
+        {/* Wealth Trajectory Chart */}
+        {oppositeCondition && oppositeTrajectory.length > 0 && (
+          <div className="mt-16 w-full max-w-3xl animate-fade-up-delay-2">
+            <WealthTrajectoryChart
+              yourTrajectory={yourTrajectory}
+              oppositeTrajectory={oppositeTrajectory}
+              yourLabel={condition.label}
+              oppositeLabel={oppositeCondition.label}
+              yourIsPrivileged={condition.isPrivileged}
+            />
+          </div>
+        )}
       </section>
 
       {/* CONCEPTS */}

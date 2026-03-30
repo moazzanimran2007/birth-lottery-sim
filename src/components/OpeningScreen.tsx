@@ -83,6 +83,7 @@ export default function OpeningScreen({ phase, conditionId, onStartFlip, onAssig
 
   if (phase === 'condition_reveal' && condition) {
     const isPrivileged = condition.isPrivileged;
+    const s = condition.startingStats;
     return (
       <div
         className="min-h-screen flex flex-col items-center justify-center px-6 transition-colors duration-1000"
@@ -108,12 +109,14 @@ export default function OpeningScreen({ phase, conditionId, onStartFlip, onAssig
             {condition.description}
           </p>
 
-          <div className="grid grid-cols-2 gap-4 mb-12 animate-fade-up-delay-2 max-w-xs mx-auto text-left">
+          <div className="grid grid-cols-2 gap-4 mb-12 animate-fade-up-delay-2 max-w-sm mx-auto text-left">
             {[
-              { label: 'Net Worth', value: formatMoney(condition.startingNetWorth) },
-              { label: 'Stress', value: `${condition.startingStress}/100` },
-              { label: 'Social Capital', value: `${condition.startingSocialCapital}/100` },
-              { label: 'Security', value: `${condition.startingSecurity}/100` },
+              { label: 'Net Worth', value: formatMoney(s.netWorth) },
+              { label: 'Stress', value: `${s.stress}/100` },
+              { label: 'Health', value: `${s.health}/100` },
+              { label: 'Credit Score', value: `${s.creditScore}` },
+              { label: 'Social Capital', value: `${s.socialCapital}/100` },
+              { label: 'Security', value: `${s.security}/100` },
             ].map(stat => (
               <div key={stat.label}>
                 <p className="font-body text-[10px] uppercase tracking-[0.2em]"

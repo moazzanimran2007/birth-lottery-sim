@@ -120,6 +120,9 @@ export default function RevealScreen({
         </div>
       </section>
 
+      {/* Financial Literacy Resources */}
+      <FinancialLiteracySection />
+
       {/* REPLAY */}
       <section className="px-4 md:px-8 py-16 max-w-2xl mx-auto text-center">
         <h2 className="font-heading text-xl mb-2" style={{ color: 'hsl(0, 0%, 70%)' }}>

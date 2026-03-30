@@ -1,16 +1,66 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useGameState } from '@/hooks/useGameState';
+import OpeningScreen from '@/components/OpeningScreen';
+import LifeStageScreen from '@/components/LifeStageScreen';
+import LifeLedger from '@/components/LifeLedger';
+import RevealScreen from '@/components/RevealScreen';
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
+const Index = () => {
+  const game = useGameState();
+
+  // Opening phases
+  if (game.phase === 'intro' || game.phase === 'coin_flip' || game.phase === 'condition_reveal') {
+    return (
+      <OpeningScreen
+        phase={game.phase}
+        conditionId={game.conditionId}
+        onStartFlip={game.startCoinFlip}
+        onAssignCondition={game.assignCondition}
+        onStartPlaying={game.startPlaying}
+      />
+    );
+  }
+
+  // Playing phase
+  if (game.phase === 'playing' && game.currentLifeStage) {
+    return (
+      <div className="flex">
+        <div className="flex-1 pr-48 md:pr-56">
+          <LifeStageScreen
+            stage={game.currentLifeStage}
+            choices={game.availableChoices}
+            conditionId={game.conditionId!}
+            isPrivileged={game.isPrivileged}
+            stageIndex={game.currentStage}
+            onChoice={game.makeChoice}
+          />
+        </div>
+        <LifeLedger
+          netWorth={game.stats.netWorth}
+          stress={game.stats.stress}
+          socialCapital={game.stats.socialCapital}
+          security={game.stats.security}
+          isPrivileged={game.isPrivileged}
+          stageIndex={game.currentStage}
+        />
+      </div>
+    );
+  }
+
+  // Reveal phase
+  if (game.phase === 'reveal' && game.condition) {
+    return (
+      <RevealScreen
+        condition={game.condition}
+        stats={game.stats}
+        oppositeCondition={game.oppositeCondition}
+        oppositeOutcome={game.oppositeOutcome}
+        onReplayAs={game.replayWithSameChoices}
+        onRestart={game.restart}
+      />
+    );
+  }
+
+  return null;
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;

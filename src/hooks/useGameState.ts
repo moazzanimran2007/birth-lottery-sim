@@ -141,6 +141,8 @@ export function useGameState() {
     isPrivileged,
     oppositeCondition,
     oppositeOutcome,
+    yourTrajectory,
+    oppositeTrajectory,
     startCoinFlip,
     assignCondition,
     startPlaying,

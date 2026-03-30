@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ['Libre Baskerville', 'Georgia', 'serif'],
+        body: ['Source Sans 3', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,6 +51,26 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        wealthy: {
+          bg: "hsl(var(--wealthy-bg))",
+          surface: "hsl(var(--wealthy-surface))",
+          gold: "hsl(var(--wealthy-gold))",
+          "gold-light": "hsl(var(--wealthy-gold-light))",
+          text: "hsl(var(--wealthy-text))",
+          muted: "hsl(var(--wealthy-muted))",
+        },
+        constrained: {
+          bg: "hsl(var(--constrained-bg))",
+          surface: "hsl(var(--constrained-surface))",
+          accent: "hsl(var(--constrained-accent))",
+          text: "hsl(var(--constrained-text))",
+          muted: "hsl(var(--constrained-muted))",
+        },
+        stress: {
+          low: "hsl(var(--stress-low))",
+          mid: "hsl(var(--stress-mid))",
+          high: "hsl(var(--stress-high))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -65,20 +89,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {

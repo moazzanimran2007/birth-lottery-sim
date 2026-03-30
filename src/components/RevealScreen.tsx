@@ -2,6 +2,7 @@ import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition, type Tr
 import type { GameStats } from '@/hooks/useGameState';
 import WealthTrajectoryChart from './WealthTrajectoryChart';
 import FinancialLiteracySection from './FinancialLiteracySection';
+import ShareCard from './ShareCard';
 
 interface RevealScreenProps {
   condition: StartingCondition;

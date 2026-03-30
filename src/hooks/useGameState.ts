@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ConditionId, CONDITIONS, LIFE_STAGES, getAvailableChoices, simulateOutcome, getOppositeCondition } from '@/data/gameData';
+import { ConditionId, CONDITIONS, LIFE_STAGES, getAvailableChoices, simulateOutcome, simulateTrajectory, getOppositeCondition } from '@/data/gameData';
 
 export type GamePhase = 'intro' | 'coin_flip' | 'condition_reveal' | 'playing' | 'reveal';
 

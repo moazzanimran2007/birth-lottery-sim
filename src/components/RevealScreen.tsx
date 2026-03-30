@@ -97,6 +97,14 @@ export default function RevealScreen({
             />
           </div>
         )}
+
+        {/* Share / Download */}
+        <ShareCard
+          condition={condition}
+          stats={stats}
+          oppositeCondition={oppositeCondition}
+          oppositeOutcome={oppositeOutcome}
+        />
       </section>
 
       {/* CONCEPTS */}

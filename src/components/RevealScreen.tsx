@@ -190,13 +190,15 @@ function StatBlock({ stats, isPrivileged }: { stats: GameStats; isPrivileged: bo
 
   const items = [
     { label: 'Net Worth', value: formatMoney(stats.netWorth), highlight: true },
-    { label: 'Stress', value: `${stats.stress}/100` },
-    { label: 'Social Capital', value: `${stats.socialCapital}/100` },
-    { label: 'Security', value: `${stats.security}/100` },
+    { label: 'Stress', value: `${Math.round(stats.stress)}/100` },
+    { label: 'Health', value: `${Math.round(stats.health)}/100` },
+    { label: 'Credit Score', value: `${Math.round(stats.creditScore)}` },
+    { label: 'Social Capital', value: `${Math.round(stats.socialCapital)}/100` },
+    { label: 'Security', value: `${Math.round(stats.security)}/100` },
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {items.map(item => (
         <div key={item.label}>
           <p className="font-body text-[9px] uppercase tracking-[0.15em]" style={{ color: labelColor }}>

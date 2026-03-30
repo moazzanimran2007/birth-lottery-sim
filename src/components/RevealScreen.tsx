@@ -1,5 +1,5 @@
 import { CONDITIONS, CONCEPTS, type ConditionId, type StartingCondition, type TrajectoryPoint } from '@/data/gameData';
-import type { GameStats } from '@/hooks/useGameState';
+import type { GameStats } from '@/data/gameData';
 import WealthTrajectoryChart from './WealthTrajectoryChart';
 import FinancialLiteracySection from './FinancialLiteracySection';
 import ShareCard from './ShareCard';

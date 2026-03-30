@@ -1,10 +1,10 @@
 import { useState, useCallback } from 'react';
 import {
-  type ConditionId, type GameStats, type RandomEvent,
+  type ConditionId, type GameStats, type RandomEvent, type ChoiceEffect,
   CONDITIONS, LIFE_STAGES,
   getAvailableChoices, simulateOutcome, simulateTrajectory,
   getOppositeCondition, compoundBetweenStages,
-  rollRandomEvents, getEventEffects, applyEffects,
+  rollRandomEvents, getEventEffects,
 } from '@/data/gameData';
 
 // Re-export applyEffects from gameData (need to export it there)

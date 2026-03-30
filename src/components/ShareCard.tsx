@@ -1,5 +1,5 @@
 import { useRef, useCallback } from 'react';
-import type { GameStats } from '@/hooks/useGameState';
+import type { GameStats } from '@/data/gameData';
 import type { StartingCondition } from '@/data/gameData';
 
 interface ShareCardProps {
